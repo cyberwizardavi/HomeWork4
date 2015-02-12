@@ -14,6 +14,8 @@
 		52BA03781A8476D600EF02BB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52BA03771A8476D600EF02BB /* Images.xcassets */; };
 		52BA037B1A8476D600EF02BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52BA03791A8476D600EF02BB /* Main.storyboard */; };
 		52BA03871A8476D600EF02BB /* avi86ToDoDocumentAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BA03861A8476D600EF02BB /* avi86ToDoDocumentAppTests.m */; };
+		52BA03951A847B5200EF02BB /* TodoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BA03921A847B5200EF02BB /* TodoItem.m */; };
+		54456A921A8BD50800B4D82B /* TodoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 54456A911A8BD50800B4D82B /* TodoList.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +43,10 @@
 		52BA03801A8476D600EF02BB /* avi86ToDoDocumentAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = avi86ToDoDocumentAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		52BA03851A8476D600EF02BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52BA03861A8476D600EF02BB /* avi86ToDoDocumentAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = avi86ToDoDocumentAppTests.m; sourceTree = "<group>"; };
+		52BA03911A847B5200EF02BB /* TodoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoItem.h; sourceTree = "<group>"; };
+		52BA03921A847B5200EF02BB /* TodoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoItem.m; sourceTree = "<group>"; };
+		52BA03931A847B5200EF02BB /* TodoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoList.h; sourceTree = "<group>"; };
+		54456A911A8BD50800B4D82B /* TodoList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoList.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,14 +88,12 @@
 		52BA03691A8476D500EF02BB /* avi86ToDoDocumentApp */ = {
 			isa = PBXGroup;
 			children = (
-				52BA036C1A8476D600EF02BB /* AppDelegate.h */,
-				52BA036D1A8476D600EF02BB /* AppDelegate.m */,
+				549ADFD21A8D1D51003F0234 /* Base */,
+				52BA03971A847B6300EF02BB /* Model */,
 				52BA03711A8476D600EF02BB /* ViewController.h */,
 				52BA03721A8476D600EF02BB /* ViewController.m */,
 				52BA03741A8476D600EF02BB /* Document.h */,
 				52BA03751A8476D600EF02BB /* Document.m */,
-				52BA03771A8476D600EF02BB /* Images.xcassets */,
-				52BA03791A8476D600EF02BB /* Main.storyboard */,
 				52BA036A1A8476D600EF02BB /* Supporting Files */,
 			);
 			path = avi86ToDoDocumentApp;
@@ -119,6 +123,28 @@
 				52BA03851A8476D600EF02BB /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		52BA03971A847B6300EF02BB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				54456A911A8BD50800B4D82B /* TodoList.m */,
+				52BA03911A847B5200EF02BB /* TodoItem.h */,
+				52BA03921A847B5200EF02BB /* TodoItem.m */,
+				52BA03931A847B5200EF02BB /* TodoList.h */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		549ADFD21A8D1D51003F0234 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				52BA036C1A8476D600EF02BB /* AppDelegate.h */,
+				52BA036D1A8476D600EF02BB /* AppDelegate.m */,
+				52BA03771A8476D600EF02BB /* Images.xcassets */,
+				52BA03791A8476D600EF02BB /* Main.storyboard */,
+			);
+			name = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,9 +247,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				52BA03761A8476D600EF02BB /* Document.m in Sources */,
+				54456A921A8BD50800B4D82B /* TodoList.m in Sources */,
 				52BA03731A8476D600EF02BB /* ViewController.m in Sources */,
 				52BA03701A8476D600EF02BB /* main.m in Sources */,
 				52BA036E1A8476D600EF02BB /* AppDelegate.m in Sources */,
+				52BA03951A847B5200EF02BB /* TodoItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,6 +438,7 @@
 				52BA038C1A8476D600EF02BB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		52BA038D1A8476D600EF02BB /* Build configuration list for PBXNativeTarget "avi86ToDoDocumentAppTests" */ = {
 			isa = XCConfigurationList;
@@ -418,6 +447,7 @@
 				52BA038F1A8476D600EF02BB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

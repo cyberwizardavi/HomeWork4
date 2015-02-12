@@ -1,12 +1,14 @@
 //
 //  Document.m
 //  avi86ToDoDocumentApp
-//
-//  Created by IOweKeren on 2/5/15.
+
 //  Copyright (c) 2015 Avishek. All rights reserved.
 //
 
 #import "Document.h"
+#import "TodoList.h"
+#import "TodoItem.h"
+#import "ViewController.h"
 
 @interface Document ()
 
@@ -17,14 +19,15 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        // Add your subclass-specific initialization here.
+        
+        self._toDoList = [TodoList new];
     }
     return self;
 }
 
 - (void)windowControllerDidLoadNib:(NSWindowController *)aController {
     [super windowControllerDidLoadNib:aController];
-    // Add any code here that needs to be executed once the windowController has loaded the document's window.
+    
 }
 
 + (BOOL)autosavesInPlace {
@@ -32,23 +35,46 @@
 }
 
 - (void)makeWindowControllers {
-    // Override to return the Storyboard file name of the document.
-    [self addWindowController:[[NSStoryboard storyboardWithName:@"Main" bundle:nil] instantiateControllerWithIdentifier:@"Document Window Controller"]];
+    
+    NSStoryboard *sb = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
+    NSWindowController *wc = [sb instantiateControllerWithIdentifier:@"Document Window Controller"];
+    
+   ViewController *vc = (ViewController *)wc.contentViewController;
+    vc.toDoList = self._toDoList;
+    NSLog(@"Item from VC %ld",vc.toDoList.itemCount);
+    
+    [self addWindowController:wc];
+    
+    
 }
 
+
+//saving
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError {
-    // Insert code here to write your document to data of the specified type. If outError != NULL, ensure that you create and set an appropriate error when returning nil.
-    // You can also choose to override -fileWrapperOfType:error:, -writeToURL:ofType:error:, or -writeToURL:ofType:forSaveOperation:originalContentsURL:error: instead.
-    [NSException raise:@"UnimplementedMethod" format:@"%@ is unimplemented", NSStringFromSelector(_cmd)];
-    return nil;
+    
+  
+     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self._toDoList];
+     NSLog(@"Item from save %ld",self._toDoList.itemCount);
+    return data;
+    
+   
+   
 }
 
+
+//loading
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError {
-    // Insert code here to read your document from the given data of the specified type. If outError != NULL, ensure that you create and set an appropriate error when returning NO.
-    // You can also choose to override -readFromFileWrapper:ofType:error: or -readFromURL:ofType:error: instead.
-    // If you override either of these, you should also override -isEntireFileLoaded to return NO if the contents are lazily loaded.
-    [NSException raise:@"UnimplementedMethod" format:@"%@ is unimplemented", NSStringFromSelector(_cmd)];
-    return YES;
+    
+    id object = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    
+    if([object isKindOfClass:[TodoList class]])
+    {
+        self._toDoList = object;
+        
+         NSLog(@"Item from load %ld",self._toDoList.itemCount);
+        return YES;
+    }
+    return NO;
 }
 
 @end
