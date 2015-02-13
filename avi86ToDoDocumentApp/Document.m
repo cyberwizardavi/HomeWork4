@@ -45,8 +45,11 @@
     
     [self addWindowController:wc];
     
+   // ((ViewController*)wc.contentViewController).toDoList = self._toDoList;
+    
     
 }
+
 
 
 //saving

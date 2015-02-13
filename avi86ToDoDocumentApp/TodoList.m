@@ -30,12 +30,23 @@
 -(void)removeItem:(TodoItem*)item {
     
  
-    NSUInteger idx = [self.theTodoList indexOfObject:item];
-    NSLog(@"Item count %lu", (unsigned long)self.theTodoList.count);
-    NSLog(@"Item index %lu", idx);
-     NSLog(@"Item name %@", item.name);
-
-    [self.theTodoList removeObjectAtIndex:idx];
+//    NSUInteger idx = [self.theTodoList indexOfObject:item];
+//    NSLog(@"Item count %lu", (unsigned long)self.theTodoList.count);
+//    NSLog(@"Item index %lu", idx);
+//     NSLog(@"Item name %@", item.name);
+//
+//    [self.theTodoList removeObjectAtIndex:idx];
+    
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name contains[cd] %@", item.name];
+    NSArray *filtered = [self.theTodoList filteredArrayUsingPredicate:predicate];
+    
+    
+    
+    
+        NSUInteger idx = [self.theTodoList indexOfObject:filtered.lastObject];
+        [self.theTodoList removeObjectAtIndex:idx];
+    
    
 
 }
