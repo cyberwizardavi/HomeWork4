@@ -41,7 +41,7 @@
     
    ViewController *vc = (ViewController *)wc.contentViewController;
     vc.toDoList = self._toDoList;
-    NSLog(@"Item from VC %ld",vc.toDoList.itemCount);
+    NSLog(@"Item from makeWindowControllers : %ld",vc.toDoList.itemCount);
     
     [self addWindowController:wc];
     

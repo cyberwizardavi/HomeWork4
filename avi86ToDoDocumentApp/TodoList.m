@@ -30,7 +30,7 @@
 -(void)removeItem:(TodoItem*)item {
     
  
-    NSUInteger idx = [self.theTodoList indexOfObject:item.name];
+    NSUInteger idx = [self.theTodoList indexOfObject:item];
     NSLog(@"Item count %lu", (unsigned long)self.theTodoList.count);
     NSLog(@"Item index %lu", idx);
      NSLog(@"Item name %@", item.name);
@@ -58,6 +58,8 @@
     
     [aCoder encodeObject:self.theTodoList forKey:@"itemsArray"];
     [aCoder encodeObject:self.title forKey:@"titleKey"];
+    
+     NSLog(@"Item from encoder: %ld",self.theTodoList.count);
 }
 
 //called when loading
@@ -68,6 +70,8 @@
     if(self){
         self.title = [aDecoder decodeObjectForKey:@"titleKey"];
         self.theTodoList = [aDecoder decodeObjectForKey:@"itemsArray"];
+        
+        NSLog(@"Item from decoder: %ld",self.theTodoList.count);
         
     }
     

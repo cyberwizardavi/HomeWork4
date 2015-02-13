@@ -10,6 +10,7 @@
 @interface TodoItem : NSObject <NSCoding>
 
 @property NSString *name;
+@property NSString *textArea;
 
 
 

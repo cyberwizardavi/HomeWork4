@@ -21,8 +21,12 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.headerText.delegate = self;
-    self.toDoList = [TodoList new];
-    self.theItem = [TodoItem new];
+   // self.toDoList = [TodoList new];
+   // self.theItem = [TodoItem new];
+    
+    [self.tableView reloadData];
+    
+    NSLog(@"Item from view load: %ld",self.toDoList.itemCount);
     
    
 }
@@ -65,7 +69,11 @@ mouseDownInHeaderOfTableColumn:(NSTableColumn *)tableColumn{
     
     TodoItem *item = [TodoItem new];
     item.name = @"New Item";
-   // item.name = @"New Item";
+    //item.textArea = self.bodyText.stringValue;
+    
+    item.textArea = @"Some Text";
+
+   
     [self.toDoList addItem:item];
     [self.tableView reloadData];
     
