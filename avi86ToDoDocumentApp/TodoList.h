@@ -14,6 +14,7 @@
 
 
 //-(instancetype)initWithTitle:(NSString*)name;
+-(void)replaceObject:(TodoItem *)item Index:(NSUInteger)rowIndex;
 -(void)addItem:(TodoItem*)item;
 -(void)removeItem:(TodoItem*)item;    // remove item
 -(TodoItem*)getItemByIndex: (NSInteger)index;

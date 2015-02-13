@@ -35,7 +35,7 @@
 
 -(void)viewDidAppear{
     [self.tableView reloadData];
-    //self.headerText =
+    
 }
 
 
@@ -43,7 +43,9 @@
 -(void)controlTextDidChange:(NSNotification *)obj{
     
     
-    NSInteger row = [self.tableView selectedRow];
+    NSUInteger row = self.tableView.selectedRowIndexes;
+    
+    NSLog(@"rows: %ld",row);
     
     NSTableColumn *column = [self.tableView tableColumnWithIdentifier:@"Cell"];
     
@@ -55,7 +57,13 @@
     
     NSLog(@"%@", self.headerText.stringValue );
     
-    [self.tableView reloadDataForRowIndexes:self.tableView.selectedRowIndexes columnIndexes:column];
+    TodoItem *item = [TodoItem new];
+    item.name = self.headerText.stringValue;
+    item.textArea = self.bodyText.stringValue;
+    
+    [self.toDoList replaceObject:item Index:row];
+    
+    [self.tableView reloadDataForRowIndexes:self.tableView.selectedRowIndexes columnIndexes:self.tableView.selectedColumnIndexes];
     
     
     

@@ -27,6 +27,14 @@
     
 }
 
+-(void)replaceObject:(TodoItem *)item Index:(NSUInteger)rowIndex{
+    
+    //NSLog(@"from replace: %@",self.theTodoList);
+    
+    [self.theTodoList replaceObjectAtIndex:rowIndex withObject:item];
+    
+}
+
 -(void)removeItem:(TodoItem*)item {
     
  
