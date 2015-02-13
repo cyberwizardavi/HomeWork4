@@ -53,7 +53,6 @@
     
   //  [self.toDoList setValue:self.headerText.stringValue forKey:[cell stringValue]];
     
-//    NSUInteger idx = [self.toDoList getItemByIndex:<#(NSInteger)#>:[cell stringValue]];
     
     NSLog(@"%@", self.headerText.stringValue );
     
