@@ -11,7 +11,7 @@
 
 @implementation ViewController
 
-
+NSInteger row = 0;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -21,8 +21,8 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.headerText.delegate = self;
-    self.toDoList = [TodoList new];
-    self.theItem = [TodoItem new];
+   // self.toDoList = [TodoList new];
+   // self.theItem = [TodoItem new];
     
     
     
@@ -35,21 +35,39 @@
 
 -(void)viewDidAppear{
     [self.tableView reloadData];
+//    if(self.toDoList.itemCount>0){
+//        self.removeItemButton.enabled = true;
+//    }
+    
+}
+
+- (IBAction)textAreaAction:(id)sender {
+    
+    NSString *string = self.bodyText.stringValue;
+    NSLog(@"body %@",string);
+    TodoItem *item = [TodoItem new];
+    item.name = self.headerText.stringValue;
+    item.textArea = self.bodyText.stringValue;
+    
+    [self.toDoList replaceObject:item Index:row];
     
 }
 
 
-
 -(void)controlTextDidChange:(NSNotification *)obj{
     
+   // NSUInteger row = 0;
+    if(self.tableView.selectedRow >= 0){
+        row = (NSUInteger)self.tableView.selectedRow;
+    }
     
-    NSUInteger row = self.tableView.selectedRowIndexes;
+  
     
     NSLog(@"rows: %ld",row);
     
-    NSTableColumn *column = [self.tableView tableColumnWithIdentifier:@"Cell"];
+   // NSTableColumn *column = [self.tableView tableColumnWithIdentifier:@"Cell"];
     
-    NSCell *cell = [column dataCellForRow:row];
+   // NSCell *cell = [column dataCellForRow:row];
     
   //  [self.toDoList setValue:self.headerText.stringValue forKey:[cell stringValue]];
     
@@ -58,11 +76,13 @@
     
     TodoItem *item = [TodoItem new];
     item.name = self.headerText.stringValue;
-    item.textArea = self.bodyText.stringValue;
+   // item.textArea = self.bodyText.stringValue;
     
     [self.toDoList replaceObject:item Index:row];
     
     [self.tableView reloadDataForRowIndexes:self.tableView.selectedRowIndexes columnIndexes:self.tableView.selectedColumnIndexes];
+    
+    [self.tableView reloadData];
     
     
     
@@ -70,6 +90,15 @@
 
 -(void)tableViewSelectionDidChange:(NSNotification *)notification{
     
+        if(self.toDoList.itemCount>0){
+            self.removeItemButton.enabled = true;
+        }
+    
+    row = (NSUInteger)self.tableView.selectedRow;
+    TodoItem *item = [self.toDoList getItemByIndex:row];
+    self.headerText.stringValue = item.name;
+    self.bodyText .stringValue  = item.textArea;
+   // [self.tableView reloadData];
     
 }
 
@@ -100,7 +129,7 @@ mouseDownInHeaderOfTableColumn:(NSTableColumn *)tableColumn{
     [self.toDoList addItem:item];
     [self.tableView reloadData];
     
-    self.headerText.stringValue = item.name;
+    //self.headerText.stringValue = item.name;
     
     NSLog(@"Item %ld",self.toDoList.itemCount);
     
@@ -117,14 +146,17 @@ mouseDownInHeaderOfTableColumn:(NSTableColumn *)tableColumn{
     
     itemToRemove.name = self.headerText.stringValue;
     
-    NSLog(@"Item remove %@", itemToRemove.name);
+    NSLog(@"Item removeeee %@", itemToRemove.name);
     
-    [self.toDoList removeItem:itemToRemove];
+   // [self.toDoList removeItem:itemToRemove];
+    [self.toDoList removeTest:(NSUInteger)row];
     [self.tableView reloadData];
+    self.headerText.stringValue = @"";
+    self.bodyText.stringValue = @"";
     
-    if(self.toDoList.itemCount == 0){
+   // if(self.toDoList.itemCount == 0){
         self.removeItemButton.enabled = NO;
-    }
+    //}
     
    
     

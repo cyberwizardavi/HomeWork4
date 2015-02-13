@@ -15,8 +15,9 @@
 
 //-(instancetype)initWithTitle:(NSString*)name;
 -(void)replaceObject:(TodoItem *)item Index:(NSUInteger)rowIndex;
+-(void)removeTest:(NSUInteger)row;
 -(void)addItem:(TodoItem*)item;
--(void)removeItem:(TodoItem*)item;    // remove item
+//-(void)removeItem:(TodoItem*)item;    // remove item
 -(TodoItem*)getItemByIndex: (NSInteger)index;
 -(NSInteger)itemCount; // number of items contained in list
 -(void)encodeWithCoder:(NSCoder *)aCoder;

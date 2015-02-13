@@ -24,6 +24,8 @@
         }
        [self.theTodoList addObject:item];
     
+    NSLog(@"text body : %@", item.textArea);
+    
     
 }
 
@@ -32,31 +34,22 @@
     //NSLog(@"from replace: %@",self.theTodoList);
     
     [self.theTodoList replaceObjectAtIndex:rowIndex withObject:item];
+   
+    
+    NSLog(@"from replace: %@",[self.theTodoList objectAtIndex:rowIndex]);
     
 }
 
--(void)removeItem:(TodoItem*)item {
+-(void)updateObject:(TodoItem *)item Index:(NSUInteger)row{
     
- 
-//    NSUInteger idx = [self.theTodoList indexOfObject:item];
-//    NSLog(@"Item count %lu", (unsigned long)self.theTodoList.count);
-//    NSLog(@"Item index %lu", idx);
-//     NSLog(@"Item name %@", item.name);
-//
-//    [self.theTodoList removeObjectAtIndex:idx];
-    
-    
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name contains[cd] %@", item.name];
-    NSArray *filtered = [self.theTodoList filteredArrayUsingPredicate:predicate];
-    
-    
-    
-    
-        NSUInteger idx = [self.theTodoList indexOfObject:filtered.lastObject];
-        [self.theTodoList removeObjectAtIndex:idx];
-    
-   
+    [self.theTodoList removeObjectAtIndex:row];
+}
 
+
+
+-(void)removeTest:(NSUInteger)row{
+    
+    [self.theTodoList removeObjectAtIndex:row];
 }
 
 
@@ -69,6 +62,12 @@
 -(TodoItem*)getItemByIndex: (NSInteger)rowIndex{
     
     return [self.theTodoList objectAtIndex:(NSInteger)rowIndex];
+}
+
+-(void)updateItem:(TodoItem*)item Index:(NSUInteger)rowIndex{
+    
+    
+    
 }
 
 
