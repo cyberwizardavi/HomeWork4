@@ -88,6 +88,7 @@ NSInteger row = 0;
     
 }
 
+
 -(void)tableViewSelectionDidChange:(NSNotification *)notification{
     
         if(self.toDoList.itemCount>0){
